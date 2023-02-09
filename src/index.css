@@ -1,6 +1,4 @@
 :root {
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
-  /* NES.css family */
   font-family: 'Press Start 2P', monospace;
   line-height: 1.5;
   font-weight: 400;
@@ -14,6 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  --app-height: 100%;
 }
 
 * {
@@ -29,6 +28,7 @@ body {
   align-items: center;
   min-width: 350px;
   min-height: 100vh;
+  min-height: var(--app-height);
   background-image: url('/background.jpg');
   background-size: cover;
   background-position: center;

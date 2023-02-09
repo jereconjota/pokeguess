@@ -171,7 +171,7 @@ export default function Pokeguess() {
         event.preventDefault()
         const { pokemon } = event.currentTarget
 
-        if (pokemon.value.toLowerCase() === pokemons[MATCH]) {
+        if (pokemon.value.toLowerCase().trim() === pokemons[MATCH]) {
             setHasWon(true)
             setWrong(false)
         } else {
@@ -191,10 +191,10 @@ export default function Pokeguess() {
                         (<span className="is-success">You Won!<i className="nes-icon trophy is-small"></i></span>)}</>)
                 }
             </div>
-            <div style={{ height: '300px' }}>
+            <div style={{ height: '260px' }}>
                 <img
-                    height={300}
-                    width={300}
+                    height={256}
+                    width={256}
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${MATCH + 1}.png`}
                     style={{ imageRendering: 'pixelated', filter: hasWon ? 'none' : 'brightness(0)' }}
                 />
@@ -205,7 +205,7 @@ export default function Pokeguess() {
                     <button style={{ width: '100%' }} className='nes-btn' onClick={() => location.reload()} autoFocus>Play again</button>
                 </div>
             ) : (
-                <form onSubmit={handleSubmit} style={{ height: '100px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', gap: '10px ' }}>
+                <form onSubmit={handleSubmit} style={{ height: '100px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', gap: '10px', padding: '40px' }}>
                     <div className="nes-field">
                         <input type="text" name="pokemon" className="nes-input" autoFocus />
                     </div>
