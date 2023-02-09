@@ -1,5 +1,7 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  /* NES.css family */
+  font-family: 'Press Start 2P', monospace;
   line-height: 1.5;
   font-weight: 400;
 
@@ -25,7 +27,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 600px;
+  min-width: 350px;
   min-height: 100vh;
   background-image: url('/background.jpg');
   background-size: cover;

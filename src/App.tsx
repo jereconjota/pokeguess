@@ -179,17 +179,21 @@ export default function Pokeguess() {
 
     return (
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+            <img src="/who.png" height={100} style={{imageRendering: 'pixelated'}} alt="" />
+            <img src="/pokemon.png" height={100} style={{imageRendering: 'pixelated'}} alt="" />
             <img
-                height={512}
-                width={512}
+                height={300}
+                width={300}
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${MATCH + 1}.png`}
                 style={{imageRendering: 'pixelated', filter: hasWon ? 'none' : 'brightness(0)'}} />
             {hasWon ? (
-                <button style={{width: '50%'}} onClick={() => window.location.reload()}>Play again</button>
+                <button style={{width: '100%'}} className='nes-btn' onClick={() => window.location.reload()}>Play again</button>
             ) : (
                 <form onSubmit={handleSubmit} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', gap: '10px ' }}>
-                    <input name="pokemon" />
-                    <button type="submit">Guess</button>
+                    <div className="nes-field">
+                        <input type="text" name="pokemon" className="nes-input" />
+                    </div>
+                    <button type="submit" className='nes-btn'>Guess</button>
                 </form>
             )}
         </div>
