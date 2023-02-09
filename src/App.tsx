@@ -154,44 +154,60 @@ const pokemons = [
 ];
 
 
-const MATCH = Math.floor(Math.random() *  pokemons.length);
+const MATCH = Math.floor(Math.random() * pokemons.length);
 
 type Form = HTMLFormElement & {
     pokemon: HTMLInputElement
 }
 
-
-
 export default function Pokeguess() {
     const [hasWon, setHasWon] = React.useState(false)
+    const [start, setStart] = React.useState(false)
+    const [wrong, setWrong] = React.useState(false)
 
+    console.log(pokemons[MATCH])
     const handleSubmit = (event: React.FormEvent<Form>) => {
+        setStart(true)
         event.preventDefault()
-        const {pokemon} = event.currentTarget
+        const { pokemon } = event.currentTarget
 
-        if (pokemon.value.toLowerCase() ===  pokemons[MATCH]) {
+        if (pokemon.value.toLowerCase() === pokemons[MATCH]) {
             setHasWon(true)
-            alert('You won!')
+            setWrong(false)
         } else {
-            alert('Try again!')
+            setWrong(true)
+            pokemon.autofocus = true
         }
     }
 
     return (
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-            <img src="/who.png" height={100} style={{imageRendering: 'pixelated'}} alt="" />
-            <img src="/pokemon.png" height={100} style={{imageRendering: 'pixelated'}} alt="" />
-            <img
-                height={300}
-                width={300}
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${MATCH + 1}.png`}
-                style={{imageRendering: 'pixelated', filter: hasWon ? 'none' : 'brightness(0)'}} />
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+            <img src="/who.png" height={100} style={{ imageRendering: 'pixelated' }} alt="" />
+            <img src="/pokemon.png" height={100} style={{ imageRendering: 'pixelated' }} alt="" />
+            <div className="nes-badge">
+                {start &&
+                    (<>{wrong ?
+                        (<span className="is-error">Try Again<i className="nes-icon close is-small"></i></span>) :
+                        (<span className="is-success">You Won!<i className="nes-icon trophy is-small"></i></span>)}</>)
+                }
+            </div>
+            <div style={{ height: '300px' }}>
+                <img
+                    height={300}
+                    width={300}
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${MATCH + 1}.png`}
+                    style={{ imageRendering: 'pixelated', filter: hasWon ? 'none' : 'brightness(0)' }}
+                />
+            </div>
+
             {hasWon ? (
-                <button style={{width: '100%'}} className='nes-btn' onClick={() => window.location.reload()}>Play again</button>
+                <div style={{ height: '100px' }}>
+                    <button style={{ width: '100%' }} className='nes-btn' onClick={() => location.reload()} autoFocus>Play again</button>
+                </div>
             ) : (
-                <form onSubmit={handleSubmit} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', gap: '10px ' }}>
+                <form onSubmit={handleSubmit} style={{ height: '100px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', gap: '10px ' }}>
                     <div className="nes-field">
-                        <input type="text" name="pokemon" className="nes-input" />
+                        <input type="text" name="pokemon" className="nes-input" autoFocus />
                     </div>
                     <button type="submit" className='nes-btn'>Guess</button>
                 </form>
